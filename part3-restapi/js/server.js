@@ -15,45 +15,35 @@ app.use(express.static('public'));
 
 // init sqlite db
 var fs = require('fs');
-var dbFile = './.data/sqlite.db';
+var dbFile = '../../db.sqlite';
 var exists = fs.existsSync(dbFile);
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database(dbFile);
 
-// if ./.data/sqlite.db does not exist, create it, otherwise print records to console
+// if ../../sqlite.db does not exist, create it, otherwise print records to console
 db.serialize(function(){
   if (!exists) {
-    db.run('CREATE TABLE Cats (cat TEXT)');
-    console.log('New table Cats created!');
-    
-    
-    // insert default cats
-    db.serialize(function() {
-      db.run('INSERT INTO Cats (cat) VALUES ("Jiji"), ("Lune"), ("Humbert von Gikkingen"), ("Lily"), ("Yuki")');
-    });
+    db.run('CREATE TABLE events (id INTEGER, date TEXT, type TEXT, name TEXT)');
+    console.log('New table "events" created!');
   }
   else {
-    console.log('Database "Cats" ready to go!');
-    db.each('SELECT * from Cats', function(err, row) {
-      if ( row ) {
-        console.log('record:', row);
-      }
-    });
+    console.log('Database ready to go!');
   }
-});
-
-// http://expressjs.com/en/starter/basic-routing.html
-app.get('/', function(request, response) {
-  response.sendFile(__dirname + '/views/index.html');
 });
 
 // endpoint to get all the cats in the database
 // currently this is the only endpoint, ie. adding cats won't update the database
 // read the sqlite3 module docs and try to add your own! https://www.npmjs.com/package/sqlite3
-app.get('/getCats', function(request, response) {
-  db.all('SELECT * from Cats', function(err, rows) {
+app.get('/getEvents', function(request, response) {
+  db.all('SELECT * FROM events', function(err, rows) {
     response.send(JSON.stringify(rows));
   });
+});
+
+// if you need a front-end, you can use the following
+// http://expressjs.com/en/starter/basic-routing.html
+app.get('/', function(request, response) {
+  response.sendFile(__dirname + '/views/index.html');
 });
 
 // listen for requests :)
