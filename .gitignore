@@ -1,0 +1,3 @@
+# ignore python's mess
+venv/
+__pycache__/
