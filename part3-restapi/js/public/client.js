@@ -14,7 +14,7 @@ const itemHandler = items => items.forEach( row => {
 
 // connect to server when page is loaded or refreshed
 window.addEventListener("load", 
-  fetch("/getEvents")
+  fetch("/List")
     .then(results => results.json())
     .then(itemHandler)
     .catch(error => console.error("Couldn't fetch data."))
