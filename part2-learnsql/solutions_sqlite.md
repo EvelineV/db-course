@@ -47,7 +47,16 @@ GROUP BY city
 ```
 
 ### Joining two or more tables
-1. List the names of all visitors for today's event.
+1. Choose one event in the database and list all visitors for that event.
+```
+SELECT
+events.name AS event,
+visitors.name AS name
+FROM events
+JOIN events_visitors ON events.id = events_visitors.event_id
+JOIN visitors ON events_visitors.visitor_id = visitors.id
+WHERE events.date = "2019-01-20"
+```
 
 1. List the names of all visitors who are older than 40 for today's event.
 
@@ -55,16 +64,32 @@ GROUP BY city
 
 
 ### Subqueries
+TO DO
 
 ## Inserting new data
 1. Someone new signed up to an event! Add them to the database using the `INSERT <column1>, <column2>, ... VALUES (<value1>, <value2>,...) INTO visitors` query. After you're done, use a `SELECT` query to confirm they're there.
+```
+INSERT INTO visitors(name, requests)
+VALUES
+('Elizabeth', 'vegetarian');
+INSERT INTO events_visitors(event_id, visitor_id)
+VALUES
+(5, (SELECT id FROM visitors WHERE name = "Elizabeth"));
+```
 
 1. Someone new signed up to all future events! To avoid having to write many queries, use a `WHERE` clause on your `INSERT` statement and add them to the visitors list for all future events. After you're done, use a `SELECT` query to confirm that your `INSERT` succeeded.
-
+_This does not work well in SQLite but is easier in PostgreSQL._
 
 ## Updating existing data
 1. A visitor has sent you an email about their food allergies. Update their entries in the `visitors` table with an `UPDATE` query so the organizers of those events will know. After you're done, use a `SELECT` query to confirm that their food data is updated.
-
+```
+UPDATE visitors SET requests = "lactose free" WHERE name="Eva"
+```
 
 ## Deleting data
-1. Sadly, one of the organizers has fallen ill. Use a `DELETE` statement to delete their row from the database. When you're done, run a query to check that you only deleted them from this one event, not their other events, and also check that you did not delete the event itself.
+1. Sadly, one of the organizers has fallen ill. Use a `DELETE` statement to delete their attendance row from the database. When you're done, run a query to check that you only deleted them from this one event, not their other events, and also check that you did not delete the event itself.
+```
+DELETE
+FROM events_organizers
+WHERE organizer_id = 4
+```

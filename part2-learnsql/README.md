@@ -57,6 +57,7 @@ Note the `ON` clause is used to find out what the tables have in common.
 1.
 
 ### Subqueries
+TO DO
 
 ## Inserting new data
 1. Someone new signed up to an event! Add them to the database using the `INSERT <column1>, <column2>, ... VALUES (<value1>, <value2>,...) INTO visitors` query. After you're done, use a `SELECT` query to confirm they're there.
@@ -66,4 +67,4 @@ Note the `ON` clause is used to find out what the tables have in common.
 1. A visitor has sent you an email about their food allergies. Update their entries in the `visitors` table with an `UPDATE` query so the organizers of those events will know. After you're done, use a `SELECT` query to confirm that their food data is updated.
 
 ## Deleting data
-1. Sadly, one of the organizers has fallen ill. Use a `DELETE` statement to delete their row from the database. When you're done, run a query to check that you only deleted them from this one event, not their other events, and also check that you did not delete the event itself.
+1. Sadly, one of the organizers has fallen ill. Use a `DELETE` statement to delete their attendance row from the database. When you're done, run a query to check that you only deleted them from this one event, not their other events, and also check that you did not delete the event itself.
