@@ -4,18 +4,24 @@ Choose whether you want to use SQLite or PostgreSQL. SQLite is often easier to i
 ## Install the database
 
 ### SQLite
-Download a pre-compiled binary from [the SQLite Download page](https://www.sqlite.org/download.html)
+Download a pre-compiled binary from [the SQLite Download page](https://www.sqlite.org/download.html) and install according to the instructions.
+
 
 ### PostgreSQL
 + Install the PostgreSQL database
 + Install pgAdmin
 
 ## Load the dataset
+
+### SQLite
++ Open the `db.sqlite` file using the SQLite database browser
+
+### PostgreSQL
 + Download the [dataset]()
 + Load CSV data files into the database
 
 ## Backups
 + Create a backup.
-+ Using the SQLite GUI or pgAdmin, delete some rows out of one of your tables
++ Using the SQLite database browser or pgAdmin, delete some rows out of one of your tables
 + Restore the backup.
 + Verify the rows you deleted earlier are back.
