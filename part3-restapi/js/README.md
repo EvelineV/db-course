@@ -1,6 +1,5 @@
 ## Building a NodeJS/Express API around your database
 
-The file `app.py` contains Python code for the API with two endpoints. You have to implement the other endpoints yourself.
 
 ### Installation
 
