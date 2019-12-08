@@ -78,7 +78,10 @@ VALUES
 ```
 
 1. Someone new signed up to all future events! To avoid having to write many queries, use a `WHERE` clause on your `INSERT` statement and add them to the visitors list for all future events. After you're done, use a `SELECT` query to confirm that your `INSERT` succeeded.
-_This does not work well in SQLite but is easier in PostgreSQL._
+```
+INSERT INTO events_visitors(visitor_id, event_id)
+SELECT 4, id FROM events WHERE date >= "2019-03-04";
+```
 
 ## Updating existing data
 1. A visitor has sent you an email about their food allergies. Update their entries in the `visitors` table with an `UPDATE` query so the organizers of those events will know. After you're done, use a `SELECT` query to confirm that their food data is updated.
